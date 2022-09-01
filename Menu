@@ -1,0 +1,56 @@
+import java.io.*;
+
+public class Menu {
+	
+	public void menuPrincipal()throws IOException{
+		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
+		int opcion;
+		
+		System.out.println("Menu Principal");
+		System.out.println("Perfil Empleado");
+		System.out.println("Perfil Cliente");
+		opcion = Integer.parseInt(leer.readLine());
+		
+		switch(opcion) {
+		case 1: 
+			menuEmpleado(/*mapa */);
+			break;
+		}
+		
+		case 2:
+			menuCliente(/*mapa */);
+			break;
+		
+		case 3:
+			return;	
+	}
+	
+	public void menuEmpleado(/*mapa */)throws IOException{
+		
+	}
+	
+	public void menuCliente(/*mapa */)throws IOException{
+		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
+		int opcion;
+		
+		System.out.println("Menu Cliente");
+		System.out.println("1.Agregar Orden");
+		System.out.println("2.Cancelar Orden/Realizar Pago");
+		
+		switch(opcion) {
+		case 1: 
+			agregarOrden(/*mapa */);
+			break;
+		}
+		
+		case 2:
+			opcionPago(/*mapa */);
+			break;
+		
+		case 3:
+			return;	
+
+	}
+	
+	
+}
