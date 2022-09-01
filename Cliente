@@ -1,0 +1,93 @@
+import java.io.*;
+
+public class Cliente {
+	private String nombre;
+	private int numero;
+	private String direccion;
+	private int rut;
+	
+	public Cliente() {
+	}
+	
+	public void agregarOrden(/*mapa */) throws IOException{
+		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
+		Cliente nuevoCliente = new Cliente();
+		String nombre;
+		int numero;
+		String direccion;
+		int rut;
+		
+		System.out.println("Ingrese el nombre con el que realizara la orden");
+		nombre = leer.readLine();
+		nuevoCliente.setNombre(nombre);
+		
+		System.out.println("Ingrese su numero telefonico");
+		numero = Integer.parseInt(leer.readLine());
+		nuevoCliente.setNumero(numero);
+		
+		System.out.println("Ingrese su direccion");
+		direccion = leer.readLine();
+		nuevoCliente.setDireccion(direccion);
+		
+		System.out.println("Ingrese su rut");
+		rut = Integer.parseInt(leer.readLine());
+		nuevoCliente.setRut(rut);
+		
+		/*Añadir al mapa */
+		
+	}
+	
+	public void opcionPago(/*mapa */)throws IOException {
+		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
+		int opcion ;
+		
+		System.out.println("Menu Pago");
+		System.out.println("Realizar Pago");
+		System.out.println("Cancelar Pago");
+		opcion = Integer.parseInt(leer.readLine());
+		
+		switch(opcion) {
+			case 1:
+				/*Realizar Pago */
+				break;
+			case 2:
+				/*Borrar Orden */
+				break;
+			case 3:
+				return;
+		}
+	}
+	
+	
+	
+	
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	public int getNumero() {
+		return numero;
+	}
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+	
+	public String getDireccion() {
+		return direccion;
+	}
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+	
+	public int getRut() {
+		return rut;
+	}
+	public void setRut(int rut) {
+		this.rut = rut;
+	}
+	
+	
+}
