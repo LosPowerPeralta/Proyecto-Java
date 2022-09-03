@@ -21,7 +21,39 @@ public class OrdenDeTrabajo {
 		this.empleado = empleado;
 		this.total = total;
 		this.id = id;
-		ordenCancelada  = false ;
+		ordenCancelada  = false;
+	}
+	
+	public void mostrarOrdenParaEmpleado() {
+		System.out.println("\nORDEN DE TRABAJO N°: " + id);
+		System.out.println("	NOMBRE DEL PRODUCTO A REPARAR: " + nombreProducto);
+		System.out.println("	DIAGNÓSTICO TÉCNICO: " + diagnostico);
+		System.out.println("\nEMPLEADO: " + empleado.getNombre());
+		System.out.println("	RUT N°: " + empleado.getRut());
+		//System.out.println("	COSTO DE REPUESTO: ");
+		//System.out.println("	APLAZAMIENTO DE FECHA POR REPUESTOS: ");
+		//System.out.println("	FECHA DE ENTREGA: ");
+		System.out.println("\nTOTAL: $" + total);
+		if(ordenCancelada) {
+			System.out.println("----ORDEN CANCELADA----");
+		}
+		System.out.println("--------------------------------------------------------");
+	}
+	
+	public void mostrarOrdenParaCliente() {
+		System.out.println("\nORDEN DE TRABAJO N°: " + id);
+		System.out.println("	DATOS DEL EQUIPO: " + nombreProducto);
+		System.out.println("	DIAGNÓSTICO TÉCNICO: " + diagnostico);
+		System.out.println("\nEMPLEADO: " + empleado.getNombre());
+		System.out.println("	RUT N°: " + empleado.getRut());
+		System.out.println("\nCLIENTE: " + cliente.getNombre());
+		System.out.println("	RUT N°: " + cliente.getRut());
+		//System.out.println("	FECHA DE ENTREGA: ");
+		System.out.println("\nTOTAL: $" + total);
+		if(ordenCancelada) {
+			System.out.println("----ORDEN CANCELADA----");
+		}
+		System.out.println("--------------------------------------------------------");
 	}
 	
 	public String getNombreProducto() {
