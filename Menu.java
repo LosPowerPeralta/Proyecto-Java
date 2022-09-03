@@ -10,20 +10,55 @@ public class Menu{
 	private Persona clienteActual;
 	private int idOrdenes;
 	
-	public Menu(Hashtable< Integer, Persona> mapaClientes, Hashtable< Integer, Persona> mapaEmpleados, ArrayList<Integer> rutsEmpleados) {
-		this.mapaClientes = mapaClientes;
-		this.mapaEmpleados = mapaEmpleados;
-		this.rutsEmpleados = rutsEmpleados;
+	public Menu( ) {
+		mapaClientes = new Hashtable< Integer, Persona>();;
+		mapaEmpleados = new Hashtable< Integer, Persona>();;
+		rutsEmpleados = new ArrayList<Integer>();
 		idOrdenes = 0;
+	}
+	
+	public void hardcodearDatos() {
+		Persona empleado = new Persona( "Jaimito", 21324095);
+		mapaEmpleados.put(21324095, empleado);
+		rutsEmpleados.add(21324095);
+		
+		empleado = new Persona( "Manuel", 20111222);
+		mapaEmpleados.put(20111222, empleado);
+		rutsEmpleados.add(20111222);
+		
+		empleado = new Persona( "Rodrigo", 21111222);
+		mapaEmpleados.put(21111222, empleado);
+		rutsEmpleados.add(21111222);
+		
+		empleado = new Persona( "Martín", 22111222);
+		mapaEmpleados.put(22111222, empleado);
+		rutsEmpleados.add(22111222);
+		
+		empleado = new Persona( "Carlos", 23111222);
+		mapaEmpleados.put(23111222, empleado);
+		rutsEmpleados.add(23111222);
+		
+		Persona cliente = new Persona( "Joaquín", 21000111);
+		mapaClientes.put(21000111, cliente);
+		
+		cliente = new Persona( "Francisco", 22000111);
+		mapaClientes.put(22000111, cliente);
+		
+		cliente = new Persona( "Enrique", 23000111);
+		mapaClientes.put(23000111, cliente);
+
+		cliente = new Persona( "Valentina", 24000111);
+		mapaClientes.put(24000111, cliente);
+		
+		cliente = new Persona( "María", 25000111);
+		mapaClientes.put(25000111, cliente);
 	}
 	
 	public void menuPrincipal()throws IOException{
 		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
 		int opcion;
 		
-		Persona empleado1 = new Persona( "Jaimito", 21324095);
-		mapaEmpleados.put(21324095, empleado1);
-		rutsEmpleados.add(21324095);
+		hardcodearDatos(); //Función solo para avance, no para entrega final
 		
 		while(true) {
 			System.out.println("Menu Principal");
@@ -42,7 +77,12 @@ public class Menu{
 				break;
 				
 			case 3:
+				System.out.println("Saliendo del programa");
 				return;
+				
+			default:
+				System.out.println("Ingrese una opción válida\n");
+				break;
 			}
 		}
 		
@@ -53,12 +93,12 @@ public class Menu{
 		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
 		int rutEmpleado;
 		
-		System.out.println("Ingrese su rut sin dígito verificador: ");
+		System.out.println("\nIngrese su rut sin dígito verificador: ");
 		rutEmpleado = Integer.parseInt(leer.readLine());
 		
 		empleadoActual = (Persona) mapaEmpleados.get( rutEmpleado );
 		if( empleadoActual != null ){
-			System.out.println("Ingreso correctamente");
+			System.out.println("\nIngreso correctamente");
 			System.out.println("Nombre empleado: " + empleadoActual.getNombre() );
 			return true;
 		}
@@ -87,7 +127,7 @@ public class Menu{
 			System.out.println("2.- Buscar una orden.");
 			System.out.println("3.- Cancelar una orden.");
 			System.out.println("4.- Actualizar ordenes.");
-			//System.out.println("4.- Completar una orden.");
+			//System.out.println("5.- Completar una orden.");
 			System.out.println("5.- Salir.");
 			opcion = Integer.parseInt(leer.readLine());
 			
@@ -97,16 +137,16 @@ public class Menu{
 				break;
 			
 			case 2:
-				System.out.println("Ingrese el id de la orden que busca: ");
+				System.out.println("\nIngrese el id de la orden que busca: ");
 				idOrdenActual = Integer.parseInt(leer.readLine());
 				empleadoActual.buscarOrdenEmpleado(idOrdenActual);
 				break;
 			
 			case 3:
-				System.out.println("Ingrese el id de la orden que desea cancelar: ");
+				System.out.println("\nIngrese el id de la orden que desea cancelar: ");
 				idOrdenActual = Integer.parseInt(leer.readLine());
 				System.out.println("Cancelar una orden es irreversible");
-				System.out.println("¿Deseea continuar de igual forma? (Ingrese Si o No)");
+				System.out.println("¿Desea continuar de igual forma? (Ingrese Si o No)");
 				respuesta = leer.readLine();
 				if(respuesta.equals("Si")) {
 					empleadoActual.cancelarOrden(idOrdenActual);
@@ -119,12 +159,16 @@ public class Menu{
 				break;
 			}*/
 			case 4:
-				System.out.println("Actualizar ordenes eliminará, de la lista de ordenes, a aquellas que esten canceladas.");
+				System.out.println("\nActualizar ordenes eliminará, de la lista de ordenes, a aquellas que esten canceladas.");
 				empleadoActual.actualizarOrdenes();
 				break;
 			
 			case 5:
 				return;
+				
+			default:
+				System.out.println("Ingrese una opción válida\n");
+				break;
 			}
 		}
 	}
@@ -135,12 +179,12 @@ public class Menu{
 		int rutCliente;
 		String respuesta, nombreCliente;
 		
-		System.out.println("Ingrese su rut sin dígito verificador: ");
+		System.out.println("\nIngrese su rut sin dígito verificador: ");
 		rutCliente = Integer.parseInt(leer.readLine());
 		
 		clienteActual = (Persona) mapaClientes.get( rutCliente );
 		if( clienteActual != null ){
-			System.out.println("Ingreso correctamente");
+			System.out.println("\nIngreso correctamente");
 			System.out.println("Nombre cliente: " + clienteActual.getNombre() );
 			return true;
 		}
@@ -151,13 +195,17 @@ public class Menu{
 			if(respuesta.equals("Si")) {
 				System.out.println("Ingrese su nombre");
 				nombreCliente = leer.readLine();
-				Persona nuevoCliente = new Persona( nombreCliente, rutCliente);
-				mapaClientes.put(rutCliente, nuevoCliente);
+				clienteActual = new Persona( nombreCliente, rutCliente);
+				mapaClientes.put(rutCliente, clienteActual);
+				System.out.println("\nIngreso correctamente");
+				System.out.println("Nombre cliente: " + clienteActual.getNombre() );
+				return true;
 			}
-			System.out.println("Volviendo al menú principal.");
-			return false;
+			else {
+				System.out.println("Volviendo al menú principal.");
+				return false;
+			}
 		}
-		
 	}
 	
 	
@@ -192,16 +240,16 @@ public class Menu{
 				break;
 			
 			case 3:
-				System.out.println("Ingrese el id de la orden que busca: ");
+				System.out.println("\nIngrese el id de la orden que busca: ");
 				idOrdenActual = Integer.parseInt(leer.readLine());
 				clienteActual.buscarOrdenCliente(idOrdenActual); //Cambiar
 				break;
 			
 			case 4:
-				System.out.println("Ingrese el id de la orden que desea cancelar: ");
+				System.out.println("\nIngrese el id de la orden que desea cancelar: ");
 				idOrdenActual = Integer.parseInt(leer.readLine());
 				System.out.println("Cancelar una orden es irreversible");
-				System.out.println("¿Deseea continuar de igual forma? (Ingrese Si o No)");
+				System.out.println("¿Desea continuar de igual forma? (Ingrese Si o No)");
 				respuesta = leer.readLine();
 				if(respuesta.equals("Si")) {
 					clienteActual.cancelarOrden(idOrdenActual);
@@ -210,12 +258,17 @@ public class Menu{
 				break;
 				
 			case 5:
-				System.out.println("Actualizar ordenes eliminará, de su lista de ordenes, a aquellas que esten canceladas.");
+				System.out.println("\nActualizar ordenes eliminará, de su lista de ordenes, a aquellas que esten canceladas.");
 				clienteActual.actualizarOrdenes();
 				break;
 			
 			case 6:
 				return;
+			
+			default:
+				System.out.println("Ingrese una opción válida\n");
+				break;
+				
 			}
 		}
 	}
@@ -226,16 +279,18 @@ public class Menu{
 		String diagnostico;
 		int total;
 		
-		System.out.println("Ingrese el modelo del computador a reparar:");
+		System.out.println("\nIngrese el modelo del computador a reparar:");
 		nombreProducto = leer.readLine();
 		
 		System.out.println("Ingrese la descripción del problema: ");
 		diagnostico = leer.readLine();
 		
-		//total = calcularTotal();
-		total = 100;
+		System.out.println("");
 		
-		empleadoActual = obtenerEmpleado(); //Menos ordenes
+		//total = calcularTotal();
+		total = (int)(Math.random()*100000); //Por el momento será con un número random
+		
+		obtenerEmpleado(); //Escoge al empleado con menos ordenes
 		
 		idOrdenes += 1;
 		
@@ -244,16 +299,24 @@ public class Menu{
 		empleadoActual.agregarNuevaOrden(nuevaOrden);
 	}
 	
-	public Persona obtenerEmpleado(){
-		//int rutActual = 
-		//menorCantidadOrdenes = 
-		//for(int i = 0; i < rutsEmpleados.size(); i++) {
+	public void obtenerEmpleado(){
 		
-		int rutRandom = rutsEmpleados.get(0);
-		empleadoActual = (Persona) mapaEmpleados.get( rutRandom );
+		int rutActual = rutsEmpleados.get(0);
+		Persona empleadoAuxiliar = mapaEmpleados.get( rutActual );
+		int menorCantidadOrdenes = empleadoAuxiliar.getCantOrdenes();
+		empleadoActual = empleadoAuxiliar;
 		
-		return empleadoActual;
+		for(int i = 0; i < rutsEmpleados.size(); i++) {
+			rutActual = rutsEmpleados.get(i);
+			empleadoAuxiliar = mapaEmpleados.get( rutActual );
+			if(empleadoAuxiliar.getCantOrdenes() < menorCantidadOrdenes) {
+				menorCantidadOrdenes = empleadoAuxiliar.getCantOrdenes();
+				empleadoActual = empleadoAuxiliar;
+			}
+		}
+		
+		//OTRA OPCIÓN PARA ESCOGER EMPLEADOS
+		//int rutRandom = rutsEmpleados.get(0);
+		//empleadoActual = (Persona) mapaEmpleados.get( rutRandom );
 	}
-	
-
 }
